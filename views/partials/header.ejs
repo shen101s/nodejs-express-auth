@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node-Express</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="bg-gray-800">
+    <div class="mx-auto ">
+      <div class="relative flex h-16 items-center justify-between">
+
+        <div class="flex flex-1 items-center justify-center sm:justify-start">
+          <div class="flex flex-shrink-0 text-white items-center mx-6 ">
+            <div class="border-2 border-gray-300 rounded-md">      
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+              </svg>
+            </div>
+            <div class="ml-1">
+              NodeJS Auth
+            </div>
+          </div>
+          <% if (user) { %>
+            <div class="hidden sm:block">
+              <div class="flex space-x-1">
+                <a href="#" class="bg-gray-900 text-white rounded-md p-3 text-sm font-medium" aria-current="page">Dashboard</a>
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Lorem1</a>
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Lorem2</a>
+                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Lorem3</a>
+              </div>
+            </div>
+          <% } %>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:mx-6 sm:pr-0">
+   
+          <div class="flex space-x-1">
+            <% if (user) { %>
+              <a href="#" class="text-gray-300 rounded-md p-3 text-sm font-medium pointer-events-none">Welcome, <%= user.email %></a>
+              <a href="/signout" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Sign out</a>
+            <% } else { %>
+              <a href="/signin" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Sign in</a>
+              <a href="/signup" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md p-3 text-sm font-medium">Sign up</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
