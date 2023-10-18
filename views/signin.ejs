@@ -1,6 +1,6 @@
 <%- include('./partials/header.ejs') %>
 
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+<div class="flex flex-col items-center justify-center">
   <div class="flex flex-col px-4 sm:px-6 md:px-8 lg:px-10 py-8 w-full max-w-md">
     <div class="font-bold text-center text-xl uppercase mb-1">
       Sign in to your account
@@ -12,6 +12,7 @@
 
     <div class="">
       <form class="w-full max-w-sm">
+        <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>">
         <div class="mb-6">
           <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email address</label>
           <div class="relative">
@@ -70,14 +71,18 @@
     emailError.textContent = ''
     passwordError.textContent = ''
 
+    const _csrf = form._csrf.value
     const email = form.email.value
     const password = form.password.value
 
     try {
       const res = await fetch('/signin', {
         method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 
+          'x-csrf-token': _csrf,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
       })
 
       const data = await res.json()
